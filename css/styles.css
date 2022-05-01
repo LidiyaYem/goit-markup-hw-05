@@ -99,21 +99,6 @@ ul {
     margin-right: 50px;
 }
 
-.site-nav .link-current{
-    display: block;
-    padding-top: 32px;
-    padding-bottom: 32px;
-
-    color: var(--accent-color);
-    letter-spacing: 0.02em;
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 1.14;
-    text-decoration: none;
-
-    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-
 .site-nav .link{
     display: block;
     padding-top: 32px;
@@ -129,14 +114,36 @@ ul {
     transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.site-nav .link-current:hover,
-.site-nav .link-current:focus {
+.site-nav .link.current{
+    color: var(--accent-color);
+   }
+
+.site-nav .link.current:hover,
+.site-nav .link.current:focus {
     color: var(--accent-color);
 }
 
 .site-nav .link:hover,
 .site-nav .link:focus {
     color: var(--accent-color);
+}
+
+.site-nav .item-link {
+    position: relative;
+}
+
+.site-nav .item-link::after {
+    display: block;    
+    position: absolute;
+    content: '';
+
+    bottom: -2.7px;
+    left: 0;
+    width: 100%;
+    height: 4px;
+
+    background-color: var(--accent-color);
+    border-radius: 2px;
 }
 
 /* Site auth */
@@ -245,6 +252,14 @@ ul {
     text-transform: uppercase;
 }
 
+.work-types-list .title {
+    color: var(--hero-text-color);
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 1.14;
+    text-transform: uppercase;
+}
+
 .team-list .title {
     margin-bottom: 10px;
 
@@ -283,6 +298,7 @@ ul {
     font-weight: 700;
     font-size: 16px;
     line-height: 1.88;
+    cursor: pointer;
 }
 
 .button-primary {
@@ -426,7 +442,7 @@ ul {
     justify-content: center;
 }
 
-/* Чим ми займаємось */
+/* Чем мы занимаемся */
 
 .work-types-list {
     display: flex;
@@ -435,6 +451,27 @@ ul {
 
 .work-types-list .item:not(:last-child) {
     margin-right: 30px;
+}
+
+.item-thumb {
+    position: relative;
+    display: block;
+    width: 370px;
+    height: 294px;
+}
+
+.thumb-title {
+    display: block;
+    text-align: center;
+
+    position: absolute; 
+    width: 370px;
+    height: 70px;
+    bottom: 0;
+    left: 0;
+    padding-top: 27px;
+    padding-bottom: 27px;
+    background-color: rgba(47, 48, 58, 0.8);
 }
 
 /* Наша команда */
@@ -552,6 +589,38 @@ ul {
     border: 1px solid var(--accent-color);
 } 
 
+/* Modal */
+
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    background-color: rgba(0, 0, 0, 0.2);
+    z-index: 1;
+
+}
+
+.backdrop.is-hidden {
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    min-width: 528px;
+    min-height: 581px;
+
+    background-color: #fff;
+}
+
 /* Portfolio */
 
 .work-lists .item-description {
@@ -617,6 +686,53 @@ ul {
 .item-image {
     display: block;
 }
+
+.item-thumb {
+    position: relative;
+    overflow: hidden;
+}
+
+.item-thumb::before {
+    position: absolute;
+    display: block;
+    content: '';
+
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 63px 24px;
+    background-color: rgba(33, 150, 243, 0.9);
+
+    transform: translateY(100%);
+    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.work-lists .item:hover .item-thumb::before {
+    transform: translateY(0);
+}
+
+.item-actions {
+    position: absolute;
+    
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 63px 24px;
+
+    font-size: 18px;
+    line-height: 1.56;
+    color: var(--hero-text-color);
+  
+    transform: translateY(100%);
+    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.work-lists .item:hover .item-actions {
+    transform: translateY(0);
+}
+
 
 /* Footer */
 
